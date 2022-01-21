@@ -1,0 +1,36 @@
+.addPostForm {
+  margin-top: 10px;
+}
+.addPostForm__header {
+  margin-bottom: 10px;
+}
+.addPostForm__form {
+  display: block;
+}
+.addPostForm__textarea {
+  display: block;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.addPostForm__sendButton {
+  font-size: 18px;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 0 10px 0;
+  padding: 4px 15px;
+  border-radius: 3px;
+  border: none;
+  background-color: lightskyblue;
+}
+.addPostForm__bottomLine {
+  display: flex;
+  justify-content: right;
+}
+
+/*# sourceMappingURL=AddPost.module.css.map */

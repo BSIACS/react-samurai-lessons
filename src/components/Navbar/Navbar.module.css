@@ -1,0 +1,16 @@
+.nav {
+  grid-area: n;
+  padding: 15px;
+  background-color: green;
+}
+
+.item {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.active {
+  color: gold;
+}
+
+/*# sourceMappingURL=Navbar.module.css.map */

@@ -1,0 +1,29 @@
+.post {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: burlywood;
+}
+.post__image {
+  background-color: #282c34;
+}
+.post__header {
+  margin-bottom: 5px;
+}
+.post__text_content {
+  padding: 5px;
+  margin-left: 10px;
+  background-color: lightgrey;
+}
+
+.item {
+  font-family: "Arial Narrow";
+}
+
+.active {
+  color: orangered;
+}
+
+/*# sourceMappingURL=Post.module.css.map */
