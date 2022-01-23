@@ -1,31 +1,34 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const MALE = 'MALE';
+const FEMALE = 'FEMALE';
 
 let init = {
     users: [
-        { id: 1, followed: true, fullName: 'James', status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 2, followed: false, fullName: 'James', status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 3, followed: true, fullName: 'James', status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 4, followed: false, fullName: 'James', status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 5, followed: true, fullName: 'James', status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+        { id: 1, followed: true, fullName: 'Jason', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+        { id: 2, followed: false, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+        { id: 3, followed: true, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+        { id: 4, followed: false, fullName: 'Anna ', gender: FEMALE, status: 'Like a boss', location: {city: 'Warsaw', country: 'Poland'}},
+        { id: 5, followed: true, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
     ],
 };
 
 const userReducer = (state = init, action) => {
     switch(action.type){
         case FOLLOW:
-            return {
+            let result = {
                 ...state,
                 users: state.users.map((user) => {
                     if(user.id === action.userId){
                         return { ...user, followed: true};
                     }
-
                     return user;
                 })
 
             };
+            console.log(result);
+            return result;
         case UNFOLLOW:
             return {
                 ...state,
