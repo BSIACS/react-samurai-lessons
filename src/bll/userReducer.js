@@ -1,20 +1,22 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
-const MALE = 'MALE';
-const FEMALE = 'FEMALE';
+//const MALE = 'MALE';
+//const FEMALE = 'FEMALE';
 
 let init = {
     users: [
-        { id: 1, followed: true, fullName: 'Jason', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 2, followed: false, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 3, followed: true, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
-        { id: 4, followed: false, fullName: 'Anna ', gender: FEMALE, status: 'Like a boss', location: {city: 'Warsaw', country: 'Poland'}},
-        { id: 5, followed: true, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+        /*{ id: 1, followed: true, fullName: 'John Doe', gender: MALE, status: 'Like a boss', location: {city: 'Houston', country: 'USA'}},
+            { id: 2, followed: false, fullName: 'Sergey Resnick', gender: MALE, status: 'Like a boss', location: {city: 'Moscow', country: 'Russia'}},
+            { id: 3, followed: true, fullName: 'James', gender: MALE, status: 'Like a boss', location: {city: 'Minsk', country: 'Belarus'}},
+            { id: 4, followed: false, fullName: 'Anna Pogoreltseva', gender: FEMALE, status: 'Like a boss', location: {city: 'Warsaw', country: 'Poland'}},
+            { id: 5, followed: true, fullName: 'James', gender: MALE, status: 'Looking for a job', location: {city: 'Minsk', country: 'Belarus'}},*/
     ],
 };
 
 const userReducer = (state = init, action) => {
+    console.log("user reducer");
+
     switch(action.type){
         case FOLLOW:
             let result = {
@@ -46,7 +48,7 @@ const userReducer = (state = init, action) => {
                 users: [ ...state.users, ...action.users]
             };
         default:
-            return state;
+            return {...state};
     }
 }
 

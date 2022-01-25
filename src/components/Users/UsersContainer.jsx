@@ -20,6 +20,7 @@ let mapDispatchToProps = (dispatch) => {
         },
 
         setUsers: (users) => {
+            //debugger;
             dispatch(setUsersActionCreator(users));
         },
     };
