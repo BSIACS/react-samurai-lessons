@@ -13,7 +13,7 @@ import {Provider} from "react-redux";
 export function render(_state){
 
     ReactDOM.render(
-        <React.StrictMode>
+        //<React.StrictMode>
             <BrowserRouter>
                 <Provider store={store}>
                     <App
@@ -22,8 +22,8 @@ export function render(_state){
                         dispatch={store.dispatch.bind(store)}
                     />
                 </Provider>
-            </BrowserRouter>
-        </React.StrictMode>,
+            </BrowserRouter>,
+        //</React.StrictMode>,
         document.getElementById('root')
     );
 }

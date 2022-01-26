@@ -10,7 +10,7 @@ let flag = true;
 const Users = (props) => {
     //debugger;
 
-    if(props.users.length === 0){
+    if(flag){
         flag = false;
         let _users = [
             { id: 1, followed: true, fullName: 'John Doe', gender: MALE, status: 'Like a boss', location: {city: 'Houston', country: 'USA'}},
