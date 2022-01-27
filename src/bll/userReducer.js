@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 //const MALE = 'MALE';
 //const FEMALE = 'FEMALE';
 
@@ -12,11 +14,12 @@ let init = {
             { id: 4, followed: false, fullName: 'Anna Pogoreltseva', gender: FEMALE, status: 'Like a boss', location: {city: 'Warsaw', country: 'Poland'}},
             { id: 5, followed: true, fullName: 'James', gender: MALE, status: 'Looking for a job', location: {city: 'Minsk', country: 'Belarus'}},*/
     ],
+    pageSize: 5,
+    currentPage: 1,
+    totalUsersCount: 14,
 };
 
 const userReducer = (state = init, action) => {
-    console.log("user reducer");
-
     switch(action.type){
         case FOLLOW:
             let result = {
@@ -43,11 +46,17 @@ const userReducer = (state = init, action) => {
                 })
             };
         case SET_USERS:
+
             return {
                 ...state,
                 users: [...action.users]
                 //users: [ ...state.users, ...action.users]
             };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage,
+            }
         default:
             return {...state};
     }
@@ -71,6 +80,13 @@ export const setUsersActionCreator = (users) => {
     return {
         type: SET_USERS,
         users: users,
+    };
+}
+
+export const setCurrentPageActionCreator = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage,
     };
 }
 

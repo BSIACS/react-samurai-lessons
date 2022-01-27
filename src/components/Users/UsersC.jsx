@@ -12,14 +12,14 @@ class Users extends React.Component{
     }
 
     componentDidMount() {
-        this.getUsers();
-        console.log("componentDidMount");
+        this.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
-    getUsers = () => {
-        axios.get("http://test.loc/?page=index&action=getUsers")
+    getUsers = (page, count) => {
+        axios.get(`http://test.loc/?page=index&action=getUsers&sheet=${page}&count=${count}`)
             .then(response => {
-                this.props.setUsers(response.data);
+                console.log("___Response received");
+                this.props.setUsers(response.data.items);
             })
         /*this.props.setUsers(
             [
@@ -32,14 +32,28 @@ class Users extends React.Component{
         );*/
     }
 
+    setCurrentPage = (currentPage) => {
+        this.props.setCurrentPage(currentPage);
+        this.getUsers(currentPage, this.props.pageSize);
+    }
+
     render = () => {
+        let pageQuantity = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
         return <div>
+
+            <div>Current page: { this.props.currentPage }</div>
+            <span onClick={ () => {this.setCurrentPage(1)} }>1</span>
+            <span onClick={ () => {this.setCurrentPage(2)} }>2</span>
+            <span onClick={ () => {this.setCurrentPage(3)} }>3</span>
+            <span onClick={ () => {this.setCurrentPage(4)} }>4</span>
+
             {
                 this.props.users.map((user) => {
                     return <div className={classes.users} key={user.id}>
                         <div className={classes.users__left_block}>
                             {
-                                user.gender === 'MALE' /*Исправить на константу*/
+                                user.gender === 'MALE' //*Исправить на константу*/!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                     ? <img className={classes.users__avatar} src={male} alt="avatar"/>
                                     : <img className={classes.users__avatar} src={female} alt="avatar"/>
                             }
