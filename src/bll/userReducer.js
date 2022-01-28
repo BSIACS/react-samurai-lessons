@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_USERS_COUNT = 'SET_USERS_COUNT';
 //const MALE = 'MALE';
 //const FEMALE = 'FEMALE';
 
@@ -57,6 +58,11 @@ const userReducer = (state = init, action) => {
                 ...state,
                 currentPage: action.currentPage,
             }
+        case SET_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount,
+            }
         default:
             return {...state};
     }
@@ -87,6 +93,13 @@ export const setCurrentPageActionCreator = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage,
+    };
+}
+
+export const setUserCountActionCreator = (totalUsersCount) => {
+    return{
+        type: SET_USERS_COUNT,
+        totalUsersCount: totalUsersCount,
     };
 }
 

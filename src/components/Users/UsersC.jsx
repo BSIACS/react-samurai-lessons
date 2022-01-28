@@ -5,7 +5,7 @@ import female from "../../img/female_s.jpg";
 import axios from "axios";
 
 
-class Users extends React.Component{
+class Users extends React.Component {
     constructor(props) {
         //alert(""); //конструктор вызывается дважды Почему??? Оказывается из-за <React.StrictMode> в index.js
         super(props);
@@ -20,6 +20,7 @@ class Users extends React.Component{
             .then(response => {
                 console.log("___Response received");
                 this.props.setUsers(response.data.items);
+                this.props.setUserCount(response.data.count);
             })
         /*this.props.setUsers(
             [
@@ -32,7 +33,7 @@ class Users extends React.Component{
         );*/
     }
 
-    setCurrentPage = (currentPage) => {
+    onPageNumberClickHandler = (currentPage) => {
         this.props.setCurrentPage(currentPage);
         this.getUsers(currentPage, this.props.pageSize);
     }
@@ -40,13 +41,26 @@ class Users extends React.Component{
     render = () => {
         let pageQuantity = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
 
-        return <div>
 
-            <div>Current page: { this.props.currentPage }</div>
-            <span onClick={ () => {this.setCurrentPage(1)} }>1</span>
-            <span onClick={ () => {this.setCurrentPage(2)} }>2</span>
-            <span onClick={ () => {this.setCurrentPage(3)} }>3</span>
-            <span onClick={ () => {this.setCurrentPage(4)} }>4</span>
+        let pages = [];
+        for (let i = 1; i <= pageQuantity; i++) {
+            pages.push(i);
+        }
+
+        return <div>
+            <div className={classes.page_numbers_block}>
+                {
+                    pages.map((index) => {
+                        if(this.props.currentPage === index){
+                            return <span className={classes.page_numbers_block__selected} onClick={
+                                () => {this.onPageNumberClickHandler(index)}} key={index}>{index}</span>
+                        }
+                        else{
+                            return <span onClick={() => {this.onPageNumberClickHandler(index)}} key={index}>{index}</span>
+                        }
+                    })
+                }
+            </div>
 
             {
                 this.props.users.map((user) => {
@@ -71,9 +85,13 @@ class Users extends React.Component{
                         </div>
                         <div className={classes.users__right_block}>
 
-                            { user.followed
-                                ? <button className={classes.btn_follow_unfollow} onClick={ () => { this.props.unfollow(user.id) } } >Unfollow</button>
-                                : <button className={classes.btn_follow_unfollow} onClick={ () => { this.props.follow(user.id) } } >Follow</button> }
+                            {user.followed
+                                ? <button className={classes.btn_follow_unfollow} onClick={() => {
+                                    this.props.unfollow(user.id)
+                                }}>Unfollow</button>
+                                : <button className={classes.btn_follow_unfollow} onClick={() => {
+                                    this.props.follow(user.id)
+                                }}>Follow</button>}
                         </div>
                     </div>
                 })
