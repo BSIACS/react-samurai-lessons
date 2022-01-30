@@ -1,4 +1,4 @@
-const ProfileInfo = function () {
+const ProfileInfo = function (props) {
     return (
         <div>
             <div>
@@ -6,6 +6,8 @@ const ProfileInfo = function () {
             </div>
             <div>
                 Ava + description
+
+                {props.profile.fullName}
             </div>
         </div>
     );

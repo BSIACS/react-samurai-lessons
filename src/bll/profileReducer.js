@@ -1,5 +1,6 @@
 export const ADD_POST = 'ADD-POST';
 export const CHANGE_ADD_POST_TEXT_AREA_VALUE = 'CHANGE-ADDPOST-TEXTAREA-VALUE';
+export const SET_PROFILE = 'SET_PROFILE';
 
 let init = {
     newPostTextAreaContent: '',
@@ -38,6 +39,7 @@ let init = {
         },
     ],
     //textAreaValue: "",
+    profile: {},
 }
 
 const profileReducer = (state = init, action) => {
@@ -63,10 +65,31 @@ const profileReducer = (state = init, action) => {
                 ...state,
                 newPostTextAreaContent: action.value
             }
+        case SET_PROFILE:
+            console.log("____");
+            console.log(action.profile);
+
+            let result = {
+                ...state,
+                profile: {...action.profile},
+            }
+
+            console.log(result);
+
+            return {
+                ...state,
+                profile: {...action.profile},
+            }
         default:
             return state;
     }
-    return state;
+}
+
+export const setProfile__AC = (profile) => {
+    return {
+        type: SET_PROFILE,
+        profile: profile
+    }
 }
 
 export default profileReducer;
