@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const GET_CURRENT_PAGE = 'GET_CURRENT_PAGE';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_COUNT = 'SET_USERS_COUNT';
+const SET_IS_FETCHING = 'SET_IS_FETCHING';
 //const MALE = 'MALE';
 //const FEMALE = 'FEMALE';
 
@@ -17,7 +18,8 @@ let init = {
     ],
     pageSize: 5,
     currentPage: 1,
-    totalUsersCount: 14,
+    totalUsersCount: 0,
+    isFetching: false,
 };
 
 const userReducer = (state = init, action) => {
@@ -63,43 +65,52 @@ const userReducer = (state = init, action) => {
                 ...state,
                 totalUsersCount: action.totalUsersCount,
             }
+        case SET_IS_FETCHING:
+            return { ...state, isFetching: action.isFetching }
         default:
-            return {...state};
+            return {...state}; ///!!!!!!!!!!!!!!!!!!!!!!!
     }
 }
 
-export const followActionCreator = (userId) => {
+export const follow__AC = (userId) => {
     return {
         type: FOLLOW,
         userId: userId,
     };
 }
 
-export const unfollowActionCreator = (userId) => {
+export const unfollowAC = (userId) => {
     return {
         type: UNFOLLOW,
         userId: userId,
     };
 }
 
-export const setUsersActionCreator = (users) => {
+export const setUsersAC = (users) => {
     return {
         type: SET_USERS,
         users: users,
     };
 }
 
-export const setCurrentPageActionCreator = (currentPage) => {
+export const setCurrentPageAC = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: currentPage,
     };
 }
 
-export const setUserCountActionCreator = (totalUsersCount) => {
+export const setUserCountAC = (totalUsersCount) => {
     return{
         type: SET_USERS_COUNT,
         totalUsersCount: totalUsersCount,
+    };
+}
+
+export const setIsFetchingAC = (isFetching) => {
+    return {
+        type: SET_IS_FETCHING,
+        isFetching: isFetching,
     };
 }
 
